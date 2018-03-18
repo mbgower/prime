@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+	<TITLE>
+		Calculate prime
+	</TITLE>
+</HEAD>
+<BODY>
+	<h1>Calculate prime numbers</h1>
+	<p>The purpose of this page is to calculate prime numbers.</p>
+	<p>Enter a number, and I'll tell you which numbers less than that are prime.</p>
+	<form id="form" onsubmit="return false;">
+		<label for="topNumber">
+			Find prime numbers less than:
+		</label>
+		<input type="text" id="topNumber">
+
+		<button onclick="calculatePrime()">Calculate</button>
+
+	</form>
+
+	<p id="results"></p>
+	<p id="check"></p>
+	<script type="text/javascript">
+		function calculatePrime() {
+			var limit = document.getElementById("topNumber").value;
+			var text = "";
+			var text2 = "";
+			var arr = ["2"];
+			for (i = 2; i < limit; i++) {
+				var arrayLength = arr.length;
+				var resetLoop;
+				resetLoop = 0;
+				for (j = 0; j < arrayLength; j++) {
+					if (i == arr[j]) {
+						text += "The number is " + i + "<br>";
+						resetLoop = 1;
+						break;
+					}
+					// else if (i > arr[j] ) {
+					else if (i % arr[j] === 0 ) {
+						text += "The number " + i + " is divisible by " + arr[j] + "<br>";
+						resetLoop = 1;
+						break;
+					}
+				}
+				
+				if (resetLoop==0) {
+					text += "Got to text after while with a value of " + i + "<br>";
+					arr.push(i)
+					// alert(arr);
+					document.getElementById("check").innerHTML = text;
+				}
+			// resetLoop = 0;
+			}
+
+			alert ("The prime numbers are " + arr);
+		}
+	</script>
+</BODY>
+</HTML>
